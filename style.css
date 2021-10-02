@@ -1,6 +1,11 @@
 *{
     padding: 0px;
     margin: 0px;
-    text-align: center;
     font-family: "Roboto mono";
+}
+
+.container{
+
+    width: 55rem;
+    margin-top: 3rem;
 }
