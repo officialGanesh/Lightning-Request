@@ -1,1 +1,38 @@
 console.log("Postman Clone 🏣");
+
+class UI {
+
+  static showAlerts(color,info) {
+    
+    let cont = document.querySelector(".container");
+    let title = document.querySelector("#title");
+    let div = document.createElement("div");
+    div.classList= `alert alert-${color}`;
+    div.setAttribute("role","alert");
+    div.innerHTML = `${info}`;
+
+    // Adding to UI
+    cont.insertBefore(div,title);
+    // Remove from UI
+    setTimeout(()=>{
+        document.querySelector(".alert").remove();
+    },1500);
+  };
+
+  static addMoreParameters(){
+
+    let queryBox = document.querySelector("#queryBox");
+    let extraParameters = document.createElement("div");
+    extraParameters.className = "row"; 
+    extraParameters.style.marginTop = "10px";
+    extraParameters.innerHTML = `<div class="col-sm"><button class="btn btn-info deleteParameters" >➖</button></div>
+    <div class="col-sm"> <input type="text" class="form-control" placeholder="Key" style="text-align: center;"></div>
+    <div class="col-sm"> <input type="text" class="form-control" placeholder="Value" style="text-align: center;"></div>`
+    queryBox.append(extraParameters);
+  };
+
+  
+
+};
+
+
