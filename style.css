@@ -9,3 +9,37 @@
     width: 55rem;
     margin-top: 3rem;
 }
+
+#title{
+    text-align: center;
+    font-size: 4rem;
+    
+}
+
+#url{
+    text-align: center;
+    font-size: 1.2rem;
+    margin: 10px 0px 5px 0px;
+}
+
+#methodBox{
+    margin: 1.5rem 0px 15px 0px;
+}
+
+#queryBox{
+
+    margin: 1.2rem 0px 1.2rem 0px;
+}
+
+#query{
+
+    
+    margin-bottom: 1.5rem;
+    
+}
+
+
+#response{
+
+    font-size: 2rem;
+}
