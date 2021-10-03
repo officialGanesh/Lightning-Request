@@ -56,8 +56,47 @@ class UI {
     textarea.innerHTML = `${output}`
     
   };
-s
+
 };
 
 
+// Check For Requests
 
+document.querySelector("#check").addEventListener('click',(e)=>{
+
+    let url = document.querySelector("#url");
+    let checkedValue = document.querySelector(`input[type="radio"]:checked`);
+    
+    if(url.value==="" || url.value===null){
+        UI.showAlerts('danger',"Make A Requests: No URL");
+    }
+
+    else if(checkedValue===null){
+        UI.showAlerts('danger','Select A Requests Method')
+    }
+    else{
+        
+        async function fetchData(){
+            
+            if(checkedValue.value==='GET'){
+                return await fetch(url.value).then(res=>{return res.text()})
+                .then(data=>{return data})
+                .catch(err=>{UI.showAlerts('danger',`Something Went Wrong: ${err}`)});
+            }
+            else if(checkedValue.value==="POST"){
+                    data = {}
+                    
+                    return await fetch(url.value,param = {
+                        method:"Post",
+                        headers:{'Content-Type':'application/json'},
+                        body:data
+                    }).then(res=>{return res.text()})
+                    .then(data=>{ return data})
+                    .catch(err=>{UI.showAlerts("danger",`Something Wenr Wrong: ${err}`)});
+            }
+        };
+        
+    };
+
+    
+});

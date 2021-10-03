@@ -27,7 +27,7 @@
 
             <!-- URL -->
         <div class="mb-4 mt-4" id="urlBox">
-            <input type="email" class="form-control py-3 alert-secondary" id="url" placeholder="Enter URL">      
+            <input type="text" class="form-control py-3 alert-secondary" id="url" placeholder="Enter URL">      
         </div>
 
             <!-- Method -->
@@ -36,7 +36,7 @@
                 <legend class="col-form-label col-sm-2 pt-0"><h4>Method</h4></legend>
                 <div class="col-sm-10">
                   <div class="form-check">
-                    <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="JSON">
+                    <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="GET">
                     <label class="form-check-label" for="gridRadios1">
                       GET
                     </label>
@@ -61,6 +61,12 @@
               <div class="col-sm"> <input type="text" class="form-control" placeholder="Value" style="text-align: center;"></div>
             </div>
         </div>
+
+        <!-- Make a requests button -->
+        <div class="d-grid gap-2">
+          <input class="btn btn-primary py-3" type="submit" value = " Make A Request" style="border-radius: 10px; font-size: 1.2rem;" id="check">  
+        </div>
+
         <hr>
 
         <!-- Show Response -->
