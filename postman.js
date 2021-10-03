@@ -31,8 +31,33 @@ class UI {
     queryBox.append(extraParameters);
   };
 
-  
+  static addParametersOnClick(){
+    let addBtn = document.querySelector("#addParameters");
+    addBtn.addEventListener('click',()=>{
+        UI.addMoreParameters()
+    });
+  };
 
+  static removeParametersOnClick(){
+
+    let queryBox = document.querySelector("#queryBox");
+    
+    queryBox.addEventListener("click",(e)=>{
+
+        if(e.target.classList.contains("deleteParameters")){
+            e.target.parentElement.parentElement.remove();
+        }
+    })
+  };
+
+  static showOutputs(output){
+
+    let textarea = document.querySelector("#floatingTextarea");
+    textarea.innerHTML = `${output}`
+    
+  };
+s
 };
+
 
 
