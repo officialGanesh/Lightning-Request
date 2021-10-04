@@ -26,8 +26,8 @@ class UI {
     extraParameters.className = "row"; 
     extraParameters.style.marginTop = "10px";
     extraParameters.innerHTML = `<div class="col-sm"><button class="btn btn-info deleteParameters" >➖</button></div>
-    <div class="col-sm"> <input type="text" class="form-control" placeholder="Key" style="text-align: center;"></div>
-    <div class="col-sm"> <input type="text" class="form-control" placeholder="Value" style="text-align: center;"></div>`
+    <div class="col-sm"> <input type="text" class="form-control" placeholder="Key" style="text-align: center; border-left: none; border-right:none ; border-top: none;"></div>
+    <div class="col-sm"> <input type="text" class="form-control" placeholder="Value" style="text-align: center; border-left: none; border-right:none ; border-top: none;"></div>`
     queryBox.append(extraParameters);
   };
 
@@ -49,54 +49,56 @@ class UI {
         }
     })
   };
-
-  static showOutputs(output){
-
-    let textarea = document.querySelector("#floatingTextarea");
-    textarea.innerHTML = `${output}`
     
+  static makeRequests(url,method){
+
+    if(method==='GET'){
+
+        fetch(url).then(res=>{return res.text()})
+        .then(data=>{document.querySelector("#floatingTextarea").innerHTML = data})
+        .catch(err=>{UI.showAlerts('danger',`Something Went Wrong: ${err}`)});        
+    }
+    else if(method==="POST"){
+        
+        fetch(url,{
+            method:"POST",
+            body: JSON.stringify({
+              title: 'foo',
+              body: 'bar',
+              userId: 1,
+            }),
+            headers: {
+              "Content-type": "application/json; charset=UTF-8"
+          }
+
+        }).then(res=>{return res.text()})
+        .then(data=>{document.querySelector("#floatingTextarea").innerHTML = data})
+        .catch(err=>{UI.showAlerts('danger',`Something Went Wrong: ${err}`)});
+
+    }
   };
 
 };
 
+//  add/remove parameters
+UI.addParametersOnClick();
+UI.removeParametersOnClick();
 
 // Check For Requests
-
 document.querySelector("#check").addEventListener('click',(e)=>{
 
     let url = document.querySelector("#url");
     let checkedValue = document.querySelector(`input[type="radio"]:checked`);
-    
+
+    //Check For Correct Method/URL
     if(url.value==="" || url.value===null){
         UI.showAlerts('danger',"Make A Requests: No URL");
     }
 
-    else if(checkedValue===null){
+    if(checkedValue===null){
         UI.showAlerts('danger','Select A Requests Method')
     }
-    else{
-        
-        async function fetchData(){
-            
-            if(checkedValue.value==='GET'){
-                return await fetch(url.value).then(res=>{return res.text()})
-                .then(data=>{return data})
-                .catch(err=>{UI.showAlerts('danger',`Something Went Wrong: ${err}`)});
-            }
-            else if(checkedValue.value==="POST"){
-                    data = {}
-                    
-                    return await fetch(url.value,param = {
-                        method:"Post",
-                        headers:{'Content-Type':'application/json'},
-                        body:data
-                    }).then(res=>{return res.text()})
-                    .then(data=>{ return data})
-                    .catch(err=>{UI.showAlerts("danger",`Something Wenr Wrong: ${err}`)});
-            }
-        };
-        
-    };
 
+    UI.makeRequests(url.value,checkedValue.value);
     
 });
