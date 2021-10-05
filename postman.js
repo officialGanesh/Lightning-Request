@@ -21,6 +21,7 @@ class UI {
 
   static addMoreParameters(){
 
+    
     let queryBox = document.querySelector("#queryBox");
     let extraParameters = document.createElement("div");
     extraParameters.className = "row"; 
@@ -29,6 +30,7 @@ class UI {
     <div class="col-sm"> <input type="text" class="form-control" placeholder="Key" style="text-align: center; border-left: none; border-right:none ; border-top: none;"></div>
     <div class="col-sm"> <input type="text" class="form-control" placeholder="Value" style="text-align: center; border-left: none; border-right:none ; border-top: none;"></div>`
     queryBox.append(extraParameters);
+    
   };
 
   static addParametersOnClick(){
@@ -49,7 +51,7 @@ class UI {
         }
     })
   };
-    
+  
   static makeRequests(url,method){
 
     if(method==='GET'){
@@ -60,13 +62,16 @@ class UI {
     }
     else if(method==="POST"){
         
+      // Default parameters for "https://jsonplaceholder.typicode.com/posts"
+      let data = {title: 'foo',
+      body: 'bar',
+      userId: 1,}; 
+      
+      
+
         fetch(url,{
             method:"POST",
-            body: JSON.stringify({
-              title: 'foo',
-              body: 'bar',
-              userId: 1,
-            }),
+            body: JSON.stringify(data),
             headers: {
               "Content-type": "application/json; charset=UTF-8"
           }
@@ -78,6 +83,7 @@ class UI {
     }
   };
 
+  
 };
 
 //  add/remove parameters
@@ -100,5 +106,5 @@ document.querySelector("#check").addEventListener('click',(e)=>{
     }
 
     UI.makeRequests(url.value,checkedValue.value);
-    
+
 });
